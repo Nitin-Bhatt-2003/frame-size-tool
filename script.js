@@ -160,10 +160,36 @@ document.addEventListener('DOMContentLoaded', () => {
         emptyState.style.display = 'none';
         resultsContent.classList.remove('hidden');
 
-        // Optional: specific animation trigger if needed, CSS transition handles fade in for now if opacity used, 
-        // but currently just 'display: block' logic. Adding a simple animation class could be good.
+        // Optional: specific animation
         resultsContent.style.animation = 'none';
         resultsContent.offsetHeight; /* trigger reflow */
         resultsContent.style.animation = 'fadeIn 0.5s ease-out';
+
+        // --- Counter API: Increment ---
+        fetch('https://api.counterapi.dev/v1/lenskart-frame-tool/recommendations/up')
+            .then(res => res.json())
+            .then(data => {
+                const countDisplay = document.getElementById('recommendation-count');
+                if (countDisplay && data.count) {
+                    countDisplay.textContent = data.count;
+                }
+            })
+            .catch(err => console.log('Counter increment failed', err));
     });
+
+    // --- Counter API: Load Count on Start ---
+    const countDisplay = document.getElementById('recommendation-count');
+    if (countDisplay) {
+        fetch('https://api.counterapi.dev/v1/lenskart-frame-tool/recommendations/')
+            .then(res => res.json())
+            .then(data => {
+                if (data.count) {
+                    countDisplay.textContent = data.count;
+                }
+            })
+            .catch(err => {
+                console.log('Counter load failed', err);
+                countDisplay.textContent = '...';
+            });
+    }
 });

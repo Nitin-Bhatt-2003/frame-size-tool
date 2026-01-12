@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const faceInput = document.getElementById('face');
     // Using querySelectorAll for radio buttons to get the checked one later
     const usageInputs = document.querySelectorAll('input[name="usage"]');
-    
+
     // Display Values
     const pdValDisplay = document.getElementById('pd-val');
     const noseValDisplay = document.getElementById('nose-val');
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const resultsPanel = document.getElementById('results-panel');
     const emptyState = resultsPanel.querySelector('.empty-state');
     const resultsContent = resultsPanel.querySelector('.results-content');
-    
+
     // Result Fields
     const resFrameSize = document.getElementById('res-frame-size');
     const resLensWidth = document.getElementById('res-lens-width');
@@ -27,6 +27,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const resFrameType = document.getElementById('res-frame-type');
     const resAdvisoryCard = document.getElementById('res-advisory-card');
     const resAdvisory = document.getElementById('res-advisory');
+
+    // Dynamic Diagram IDs
+    const dynLens = document.getElementById('dyn-lens');
+    const dynBridge = document.getElementById('dyn-bridge');
+    const dynTemple = document.getElementById('dyn-temple');
 
     // Update displays on slide
     function updateDisplays() {
@@ -121,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const nose = parseFloat(noseInput.value);
         const face = parseFloat(faceInput.value);
         let usage = "Single Vision";
-        
+
         usageInputs.forEach(radio => {
             if (radio.checked) {
                 usage = radio.value;
@@ -144,6 +149,12 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             resAdvisoryCard.classList.add('hidden');
         }
+
+        // Update Dynamic Diagram
+        // Extract single numbers from ranges for cleaner display (e.g. "51-53 mm" -> "52")
+        dynLens.textContent = result.lensWidth.replace(' mm', '').split('–')[0];
+        dynBridge.textContent = result.bridge.replace(' mm', '').split('–')[0];
+        dynTemple.textContent = result.temple.replace(' mm', '').split('–')[0];
 
         // Show results
         emptyState.style.display = 'none';

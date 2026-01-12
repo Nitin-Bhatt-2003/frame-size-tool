@@ -165,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
         resultsContent.offsetHeight; /* trigger reflow */
         resultsContent.style.animation = 'fadeIn 0.5s ease-out';
 
-        // --- Counter API: Increment ---
+        // --- Counter API: Increment Total ---
         fetch('https://api.counterapi.dev/v1/lenskart-frame-tool/recommendations/up')
             .then(res => res.json())
             .then(data => {
@@ -175,10 +175,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             })
             .catch(err => console.log('Counter increment failed', err));
+
+        // --- Counter API: Increment Today ---
+        const today = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
+        fetch(`https://api.counterapi.dev/v1/lenskart-frame-tool/recommendations-${today}/up`)
+            .then(res => res.json())
+            .then(data => {
+                const todayDisplay = document.getElementById('today-count');
+                if (todayDisplay && data.count) {
+                    todayDisplay.textContent = data.count;
+                }
+            })
+            .catch(err => console.log('Today counter increment failed', err));
     });
 
-    // --- Counter API: Load Count on Start ---
+    // --- Counter API: Load Counts on Start ---
     const countDisplay = document.getElementById('recommendation-count');
+    const todayDisplay = document.getElementById('today-count');
+    const today = new Date().toISOString().slice(0, 10);
+
     if (countDisplay) {
         fetch('https://api.counterapi.dev/v1/lenskart-frame-tool/recommendations/')
             .then(res => res.json())
@@ -189,7 +204,23 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .catch(err => {
                 console.log('Counter load failed', err);
-                countDisplay.textContent = '...';
+                countDisplay.textContent = '0';
+            });
+    }
+
+    if (todayDisplay) {
+        fetch(`https://api.counterapi.dev/v1/lenskart-frame-tool/recommendations-${today}/`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.count) {
+                    todayDisplay.textContent = data.count;
+                } else {
+                    todayDisplay.textContent = '0';
+                }
+            })
+            .catch(err => {
+                console.log('Today counter load failed', err);
+                todayDisplay.textContent = '0';
             });
     }
 });

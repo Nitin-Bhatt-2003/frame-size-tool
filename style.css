@@ -387,40 +387,74 @@ input[type=range]::-webkit-slider-thumb:hover {
     width: 100%;
     margin-top: 10px;
     border-radius: 8px;
+    background: rgba(15, 23, 42, 0.6);
+    /* Slightly darker bg for diagram */
+    border: 1px solid var(--glass-border);
     overflow: hidden;
 }
 
-.diagram-img {
+.schematic-svg {
     width: 100%;
+    height: auto;
     display: block;
-    border-radius: 8px;
+    padding: 20px;
 }
 
+/* SVG Path Styles */
+.frame-path {
+    fill: none;
+    stroke: var(--primary);
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    filter: drop-shadow(0 0 4px rgba(16, 185, 129, 0.5));
+    transition: all 0.5s ease;
+}
+
+.guide-line,
+.guide-tick {
+    stroke: var(--text-muted);
+    stroke-width: 1.5;
+    stroke-dasharray: 4, 4;
+    /* Dashed line for guides */
+    opacity: 0.7;
+}
+
+/* Dynamic Values overlay adjustments */
 .dyn-val {
     position: absolute;
-    background: rgba(15, 23, 42, 0.95);
-    color: #10b981;
-    padding: 2px 8px;
+    color: var(--text-color);
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+    background: rgba(15, 23, 42, 0.8);
+    padding: 2px 6px;
     border-radius: 4px;
-    font-size: 1.1rem;
-    font-weight: 800;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-    border: 1px solid #10b981;
-    z-index: 10;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Positioning - tuned roughly to the image structure */
+/* Specific Positioning over SVG */
+.dyn-len {
+    /* Typo fix: dyn-lens */
+    /* Handled by .dyn-lens below */
+}
+
+/* Bridge Value */
 .dyn-bridge {
-    top: 28%;
-    right: 48%;
+    top: 15%;
+    /* Adjusted for SVG coordinates */
+    left: 50%;
+    transform: translateX(-50%);
 }
 
+/* Lens Value */
 .dyn-lens {
-    top: 50%;
+    bottom: 25%;
     right: 20%;
 }
 
+/* Temple Value */
 .dyn-temple {
-    bottom: 12%;
-    right: 5%;
+    top: 35%;
+    right: 2%;
 }

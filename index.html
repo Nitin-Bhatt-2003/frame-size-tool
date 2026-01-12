@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <div class="background-globes">
@@ -20,24 +22,32 @@
         <header>
             <div class="logo">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5.5 15C5.5 15.8284 6.17157 16.5 7 16.5C7.82843 16.5 8.5 15.8284 8.5 15C8.5 14.1716 7.82843 13.5 7 13.5C6.17157 13.5 5.5 14.1716 5.5 15Z" stroke="#10b981" stroke-width="2"/>
-                    <path d="M15.5 15C15.5 15.8284 16.1716 16.5 17 16.5C17.8284 16.5 18.5 15.8284 18.5 15C18.5 14.1716 17.8284 13.5 17 13.5C16.1716 13.5 15.5 14.1716 15.5 15Z" stroke="#10b981" stroke-width="2"/>
-                    <path d="M8.5 15H15.5" stroke="#10b981" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M2.5 15C2.5 12.5147 4.51472 10.5 7 10.5C9.48528 10.5 11.5 12.5147 11.5 15" stroke="#374151" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M12.5 15C12.5 12.5147 14.5147 10.5 17 10.5C19.4853 10.5 21.5 12.5147 21.5 15" stroke="#374151" stroke-width="2" stroke-linecap="round"/>
+                    <path
+                        d="M5.5 15C5.5 15.8284 6.17157 16.5 7 16.5C7.82843 16.5 8.5 15.8284 8.5 15C8.5 14.1716 7.82843 13.5 7 13.5C6.17157 13.5 5.5 14.1716 5.5 15Z"
+                        stroke="#10b981" stroke-width="2" />
+                    <path
+                        d="M15.5 15C15.5 15.8284 16.1716 16.5 17 16.5C17.8284 16.5 18.5 15.8284 18.5 15C18.5 14.1716 17.8284 13.5 17 13.5C16.1716 13.5 15.5 14.1716 15.5 15Z"
+                        stroke="#10b981" stroke-width="2" />
+                    <path d="M8.5 15H15.5" stroke="#10b981" stroke-width="2" stroke-linecap="round" />
+                    <path d="M2.5 15C2.5 12.5147 4.51472 10.5 7 10.5C9.48528 10.5 11.5 12.5147 11.5 15" stroke="#374151"
+                        stroke-width="2" stroke-linecap="round" />
+                    <path d="M12.5 15C12.5 12.5147 14.5147 10.5 17 10.5C19.4853 10.5 21.5 12.5147 21.5 15"
+                        stroke="#374151" stroke-width="2" stroke-linecap="round" />
                 </svg>
-                <span>OptiFit</span>
+                <span>Lenskart Internal</span>
             </div>
             <h1>Perfect Frames, <span class="highlight">Perfect Fit.</span></h1>
             <p>Enter your measurements to get personalized eyeglass recommendations instantly.</p>
+            <p style="font-size: 0.85rem; margin-top: 0.5rem; opacity: 0.7; font-weight: 500;">Designed by CES team</p>
         </header>
 
         <main class="grid-layout">
             <section class="controls-panel glass-card">
                 <h2>Your Measurements</h2>
-                
+
                 <div class="input-group">
-                    <label for="pd">Pupillary Distance (PD) <span class="value-display" id="pd-val">62.0 mm</span></label>
+                    <label for="pd">Pupillary Distance (PD) <span class="value-display" id="pd-val">62.0
+                            mm</span></label>
                     <input type="range" id="pd" min="50" max="70" step="1" value="62">
                     <div class="range-labels">
                         <span>50mm</span>
@@ -88,7 +98,7 @@
                 <div class="empty-state">
                     <p>👈 Adjust sliders and click "Get Recommendation" to see results here.</p>
                 </div>
-                
+
                 <div class="results-content hidden">
                     <div class="glass-card result-card">
                         <span class="badge">Recommended Size</span>
@@ -120,6 +130,12 @@
                         <span class="icon">ℹ️</span>
                         <p id="res-advisory">Ensure frame height ≥ 30 mm.</p>
                     </div>
+
+                    <div class="glass-card result-card image-card" style="margin-top: 1rem;">
+                        <span class="label" style="display: block; margin-bottom: 0.5rem;">Measurement Reference</span>
+                        <img src="frames-diagram.png" alt="Frame Measurements"
+                            style="width: 100%; border-radius: 8px; display: block;">
+                    </div>
                 </div>
             </section>
         </main>
@@ -127,4 +143,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>
